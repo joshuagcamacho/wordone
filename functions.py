@@ -59,11 +59,13 @@ def input_word(word: str, driver) -> None:
     click_enter(driver)
     
 def check_used_letters(driver) -> list[object]:
+    """
+    Returns a list of letters that were previous used.
+    """
     used_letters = driver.find_elements(By.XPATH, "//button[@data-state='absent']")
     main = []
     for letters in used_letters:
         [letter, status] = letters.accessible_name.split()
-        state = check_status(status)
-        print(state)
+
         main.append(letter)        
     return main
